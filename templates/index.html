@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Welcome to Xpense App</h1>
+    {% if spendings %}
+    {% for spending in spendings %}
+        <a href="{{ url_for('spending', spending_id=spending['id']) }}">
+            <h2>{{ spending['title'] }}</h2>
+        </a>
+        <span class="badge badge-primary">{{ spending['debited'] }}</span>
+        <a href="{{ url_for('edit', id=spending['id']) }}">
+            <span class="badge badge-warning">Edit</span>
+        </a>
+        <hr>
+    {% endfor %}
+{% else %}
+    <p>No spendings recorded yet.</p>
+{% endif %}
+
+{% endblock %}
